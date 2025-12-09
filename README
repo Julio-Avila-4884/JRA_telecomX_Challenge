@@ -1,0 +1,19 @@
+JRA_TelecomX_challenge_g9
+
+Segundo Challenge de Data Science
+
+Descripción:
+
+Durante este desafío, Analizaremos los datos de la empresa telecomX para determinar el estado de la empresa, si presenta perdidas mas de lo normal, las posibles causas y brindaremos una posibles soluciones o recomendaciones.
+
+
+Lo que practicarás:
+
+Cargue y manipule datos CSV con la biblioteca Pandas.
+
+Cree visualizaciones de datos con la biblioteca Matplotlib, seaborn, y tablas style.
+
+Limpieza de datos, manipulación y análisis de datos para determinar el estatus actual
+
+
+¡Éxito en el proyecto!
