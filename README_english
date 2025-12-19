@@ -1,0 +1,175 @@
+# TelecomX — Customer Churn Analysis
+
+## Project Context
+
+TelecomX is a telecommunications company that has identified an **increase in service cancellations (churn)**.  
+In response, a detailed analysis of its customer base was requested to **understand the drivers of churn and propose data-driven retention strategies**.
+
+This project presents a **business-oriented Exploratory Data Analysis (EDA)** focused on identifying behavioral patterns, risk segments, and services associated with customer churn.
+
+---
+
+## Analysis Objectives
+
+- Identify patterns between customers who churn and those who remain.
+- Analyze demographic, contractual, and service-related variables.
+- Detect factors that increase or reduce churn risk.
+- Generate actionable recommendations to improve customer retention.
+
+---
+
+## Data Used
+
+- Source: JSON file provided by the client  
+- Total records processed: **7,267**
+- Total valid customers analyzed: **7,043**
+- Target variable: **Churn**
+
+**Churn rate:**  
+**26.54%**
+
+---
+
+## Data Cleaning and Preparation
+
+Main actions performed:
+
+- Normalization of nested JSON structures into independent columns.
+- Removal of non-analytical columns (`Customer ID`, `Total`).
+- Validation of missing values (less than 5% of total).
+- Segmentation of the dataset into active and churned customers.
+- Correction of logical inconsistencies in contracted services.
+- Transformation of categorical variables into numerical and dummy variables.
+- Separation of categorical and numerical variables for focused analysis.
+
+This process resulted in a consistent and reliable dataset.
+
+---
+
+## Methodology
+
+1. Data ingestion from JSON  
+2. Data cleaning and normalization  
+3. Exploratory analysis by segments  
+4. Continuous variable evaluation  
+5. Contracted services analysis  
+6. Correlation matrices and heatmaps  
+7. Results interpretation and recommendations  
+
+---
+
+## Analysis and Key Findings
+
+### Demographic Segments
+
+- Balanced gender distribution (≈50/50).
+- 48.3% of customers have a partner.
+- 29.96% have dependents.
+- 16.21% are senior citizens (+65 years).
+
+**Insight:**  
+Customers who are **older, without a partner, and without dependents** show a higher churn risk.
+
+---
+
+### Continuous Variables
+
+| Variable | Churn Mean | Non-Churn Mean | Churn Median | Non-Churn Median |
+|--------|------------|----------------|--------------|------------------|
+| Tenure (months) | 17.98 | 37.57 | 10.0 | 38.0 |
+| Monthly Charges | 74.44 | 61.27 | 79.65 | 64.43 |
+
+**Insight:**  
+Churned customers:
+- Have **shorter tenure** (≤10 months).
+- Pay **higher monthly charges**.
+
+➡ New customers + expensive plans = **high churn risk**.
+
+---
+
+### Contracted Services Analysis
+
+**Services that reduce churn risk:**
+- OnlineSecurity
+- OnlineBackup
+- DeviceProtection
+- TechSupport
+
+**Services associated with higher churn risk:**
+- Fiber optic internet
+- Streaming TV and Movies
+- **Month-to-Month** contracts
+- Paperless Billing
+- **Electronic Check** payment method
+
+**Insight:**  
+Support services improve retention, while **expensive plans, flexible contracts, and electronic payment methods** increase churn risk.
+
+---
+
+## Relevant Correlations
+
+**Highest positive correlation with churn:**
+- Month-to-month contracts (0.40)
+- Fiber internet (0.31)
+- Electronic Check (0.30)
+- Monthly Charges (0.19)
+
+**Retention-related factors:**
+- Tenure (-0.35)
+- Two-year contracts (-0.30)
+- OnlineSecurity (-0.17)
+- TechSupport (-0.16)
+- Partner / Dependents (-0.15)
+
+**Technical insight:**  
+There is no strong individual correlation between monthly cost and churn; cancellations are driven by a **combination of contractual and service-related factors**.
+
+---
+
+## Conclusions
+
+1. Customers with **fiber optic + streaming services** do not perceive enough value relative to cost.
+2. **Month-to-Month** contracts enable early cancellations.
+3. Electronic payment methods, combined with high charges, increase churn.
+4. Retention improves with:
+   - Longer tenure
+   - Long-term contracts
+   - Support services
+   - Customers with partners or dependents
+
+---
+
+## Business Recommendations
+
+- Focus retention campaigns on **new customers, senior citizens, and customers without dependents**.
+- Encourage the adoption of **support services**.
+- Promote longer-term contracts.
+- Review pricing and bundles for fiber optic and streaming services.
+- Reevaluate the electronic payment experience for high-value customers.
+
+---
+
+## Technologies Used
+
+- Python  
+- Pandas  
+- Matplotlib  
+- Jupyter Notebook  
+
+---
+
+## Project Structure
+
+JRA_telecomX_Challenge
+ ┣  data
+ ┃ ┗ TelecomX_Data.json
+ ┣ notebooks
+ ┃ ┗ TelecomX.ipynb
+ ┣ reports
+ ┃ ┗ Informe_TelecomX.pdf
+ ┣ images
+ ┃ ┗  *.png
+ ┗ README.md
+
