@@ -1,19 +1,175 @@
-JRA_TelecomX_challenge_g9
+# TelecomX — Análisis de Baja de Clientes (Churn Analysis)
 
-Segundo Challenge de Data Science
+## Contexto del proyecto
 
-Descripción:
+TelecomX es una empresa de telecomunicaciones que ha detectado un **incremento en la cancelación de servicios (churn)**.  
+Ante esta situación, se solicitó un análisis detallado de su base de clientes para **entender los factores que impulsan la baja y proponer estrategias de retención basadas en datos**.
 
-Durante este desafío, Analizaremos los datos de la empresa telecomX para determinar el estado de la empresa, si presenta perdidas mas de lo normal, las posibles causas y brindaremos una posibles soluciones o recomendaciones.
+Este proyecto desarrolla un **Análisis Exploratorio de Datos (EDA)** con enfoque en negocio, orientado a identificar patrones de comportamiento, segmentos de riesgo y servicios asociados a la cancelación.
 
+---
 
-Lo que practicarás:
+## Objetivo del análisis
 
-Cargue y manipule datos CSV con la biblioteca Pandas.
+- Identificar patrones de clientes que se dan de baja vs. los que permanecen.
+- Analizar variables demográficas, contractuales y de servicios.
+- Detectar factores que incrementan o reducen el riesgo de cancelación.
+- Generar recomendaciones accionables para mejorar la retención.
 
-Cree visualizaciones de datos con la biblioteca Matplotlib, seaborn, y tablas style.
+---
 
-Limpieza de datos, manipulación y análisis de datos para determinar el estatus actual
+## Datos utilizados
 
+- Fuente: archivo JSON proporcionado por el cliente  
+- Total de registros procesados: **7,267**
+- Total de clientes válidos analizados: **7,043**
+- Variable objetivo: **Baja (Churn)**
 
-¡Éxito en el proyecto!
+**Porcentaje de clientes dados de baja:**  
+ **26.54%**
+
+---
+
+## Limpieza y preparación de datos
+
+Las principales acciones realizadas fueron:
+
+- Normalización de estructuras JSON anidadas en columnas independientes.
+- Eliminación de columnas sin valor analítico (`Cliente ID`, `Total`).
+- Validación de valores faltantes (menos del 5% del total).
+- Segmentación del universo en clientes activos y dados de baja.
+- Corrección de inconsistencias lógicas en servicios contratados.
+- Transformación de variables categóricas a formato numérico y variables dummy.
+- Separación de variables categóricas y numéricas para análisis específico.
+
+Este proceso permitió trabajar con un dataset consistente y confiable.
+
+---
+
+## Metodología
+
+1. Ingesta de datos desde JSON  
+2. Limpieza y normalización  
+3. Análisis exploratorio por segmentos  
+4. Evaluación de variables continuas  
+5. Análisis de servicios contratados  
+6. Matrices y mapas de correlación  
+7. Interpretación de resultados y recomendaciones  
+
+---
+
+## Análisis y hallazgos clave
+
+### Segmentos demográficos
+
+- Distribución de género equilibrada (≈50/50).
+- 48.3% de los clientes tienen pareja.
+- 29.96% tienen dependientes.
+- 16.21% son adultos mayores (+65 años).
+
+**Insight:**  
+Los clientes **mayores, sin pareja y sin dependientes** presentan mayor riesgo de baja.
+
+---
+
+### Variables continuas
+
+| Variable | Media Baja | Media No Baja | Mediana Baja | Mediana No Baja |
+|--------|------------|---------------|--------------|----------------|
+| Tenure (meses) | 17.98 | 37.57 | 10.0 | 38.0 |
+| Monthly Charges | 74.44 | 61.27 | 79.65 | 64.43 |
+
+**Insight:**  
+Los clientes que se dan de baja:
+- Tienen **menor antigüedad** (≤10 meses).
+- Pagan **cargos mensuales más altos**.
+
+➡ Clientes nuevos + planes caros = **alto riesgo de churn**.
+
+---
+
+### Análisis de servicios contratados
+
+**Servicios que protegen contra la baja:**
+- OnlineSecurity
+- OnlineBackup
+- DeviceProtection
+- TechSupport
+
+**Servicios asociados a mayor riesgo:**
+- Internet de fibra óptica
+- Streaming TV y Movies
+- Contratos **Month-to-Month**
+- Paperless Billing
+- Pago con **Electronic Check**
+
+**Insight:**  
+Los servicios de soporte incrementan la retención, mientras que **planes caros, contratos flexibles y métodos de pago electrónicos** elevan el riesgo de cancelación.
+
+---
+
+## Correlaciones relevantes
+
+**Mayor correlación positiva con la baja:**
+- Contract Month-to-month (0.40)
+- Internet Fibra (0.31)
+- Electronic Check (0.30)
+- Monthly Charges (0.19)
+
+**Factores asociados a retención:**
+- Tenure (-0.35)
+- Contratos de 2 años (-0.30)
+- OnlineSecurity (-0.17)
+- TechSupport (-0.16)
+- Partner / Dependents (-0.15)
+
+**Insight técnico:**  
+No existe una correlación individual fuerte entre costo mensual y churn; la baja se explica por la **combinación de factores contractuales y de servicio**.
+
+---
+
+## Conclusiones
+
+1. Los clientes con **fibra óptica + streaming** no perciben suficiente valor frente al costo.
+2. Los contratos **Month-to-Month** facilitan cancelaciones tempranas.
+3. Los métodos de pago electrónicos, combinados con altos costos, incrementan la evasión.
+4. La retención mejora con:
+   - Mayor antigüedad
+   - Contratos de largo plazo
+   - Servicios de soporte
+   - Clientes con pareja o dependientes
+
+---
+
+## Recomendaciones de negocio
+
+- Focalizar campañas de retención en **clientes nuevos, adultos mayores y sin dependientes**.
+- Incentivar la contratación de **servicios de soporte**.
+- Promover contratos de mayor duración.
+- Revisar precios y bundles de fibra óptica y streaming.
+- Reevaluar la experiencia de pago electrónico para clientes de alto valor.
+
+---
+
+## Tecnologías utilizadas
+
+- Python  
+- Pandas  
+- Matplotlib  
+- Jupyter Notebook  
+
+---
+
+## Estructura del proyecto
+
+JRA_telecomX_Challenge
+ ┣  data
+ ┃ ┗ TelecomX_Data.json
+ ┣ notebooks
+ ┃ ┗ TelecomX.ipynb
+ ┣ reports
+ ┃ ┗ Informe_TelecomX.pdf
+ ┣ images
+ ┃ ┗  *.png
+ ┗ README.md
+
